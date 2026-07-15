@@ -110,9 +110,9 @@ showQuerySuccessPage({"en": [{filename: XSS_PAYLOAD, url: "...", ...}]}, globalT
 
 Each layer independently confirmed: `child_process.exec('calc.exe')` launched, marker file written via `fs.writeFileSync()` through `nodeRequire`.
 
-![Image](https://github.com/user-attachments/assets/POC_MARKER_SCREENSHOT)
+![POC Evidence](https://raw.githubusercontent.com/LeoWSY-hashblue/cve-electron-2/master/gsubs/screenshot/poc_evidence.png)
 
-*(POC screenshot: marker file content showing "RCE_B01_GSUBS uid=WSY", calc.exe process visible in taskbar)*
+*POC evidence summary: marker file "RCE_B01_GSUBS uid=WSY" written via window.nodeRequire('fs').writeFileSync(); calc.exe launched via child_process.exec(). CDP triple-layer verification on unmodified gsubs v1.0.3 — all three layers independently confirmed.*
 
 ## Fix
 
