@@ -110,9 +110,23 @@ showQuerySuccessPage({"en": [{filename: XSS_PAYLOAD, url: "...", ...}]}, globalT
 
 Each layer independently confirmed: `child_process.exec('calc.exe')` launched, marker file written via `fs.writeFileSync()` through `nodeRequire`.
 
-![POC Evidence](https://raw.githubusercontent.com/LeoWSY-hashblue/cve-electron-2/master/gsubs/screenshot/poc_evidence.png)
+**Result (2026-07-15 clean re-run)**
 
-*POC evidence summary: marker file "RCE_B01_GSUBS uid=WSY" written via window.nodeRequire('fs').writeFileSync(); calc.exe launched via child_process.exec(). CDP triple-layer verification on unmodified gsubs v1.0.3 — all three layers independently confirmed.*
+```
+[+] L5_CONFIRMED marker=RCE_B01_GSUBS uid=WSY
+```
+
+Marker file `_POC_B01_RCE_PROOF.txt` content: `RCE_B01_GSUBS uid=WSY` (MD5: db17e68b21f67aea71c46a932f147f34)
+
+Calc.exe processes launched by PoC (Windows Task Manager):
+```
+CalculatorApp.exe    58096   120,700 K
+CalculatorApp.exe    59512   119,192 K
+CalculatorApp.exe    59588   124,388 K
+```
+
+Full PoC harness and source files available in:
+https://github.com/LeoWSY-hashblue/cve-electron-2/tree/master/gsubs/poc
 
 ## Fix
 
